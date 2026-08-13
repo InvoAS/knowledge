@@ -1,0 +1,44 @@
+# =============================================================================
+#  JIRA-INTEGRASJON - HURTIGGUIDE
+# =============================================================================
+#
+#  HVA GJOR DEN?
+#    Setter du labelen `create-jira` paa en GitHub-issue, opprettes det
+#    automatisk en Jira-issue. GitHub-issuen faar en kommentar med lenke og
+#    en `jira:NOKKEL`-label, og trigger-labelen fjernes igjen.
+#
+#  BRUK
+#    create-jira              -> oppretter i INVIN (default for dette repoet)
+#    create-jira:INVINSAK     -> overstyrer, oppretter i INVINSAK i stedet
+#
+#  BYTTE DEFAULT-PROSJEKT
+#    Endre `jira_project` nedenfor. Ingenting annet maa roeres.
+#
+#  LOGIKKEN LIGGER IKKE HER
+#    Denne filen er kun en stub. All logikk vedlikeholdes sentralt i
+#    InvoLibrary, slik at en fiks slaar ut i alle repos samtidig.
+#
+#    Kildekode:  https://github.com/InvoAS/InvoLibrary/blob/main/.github/workflows/jira-create.yml
+#    Full guide: https://github.com/InvoAS/InvoLibrary/blob/main/agents/shared/github-jira-integration.md
+#
+#  FEILSOKING
+#    Feiler den, kommenterer den paa issuen med aarsak og lenke til loggen.
+#    Sett labelen paa nytt for aa proeve igjen.
+# =============================================================================
+
+name: "Jira: Create issue"
+
+on:
+  issues:
+    types: [labeled]
+
+# Kreves: org-default for GITHUB_TOKEN er read-only.
+permissions:
+  issues: write
+
+jobs:
+  jira:
+    uses: InvoAS/InvoLibrary/.github/workflows/jira-create.yml@main
+    with:
+      jira_project: INVIN
+    secrets: inherit

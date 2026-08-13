@@ -1,0 +1,26 @@
+# =============================================================================
+#  JIRA-INTEGRASJON - TIMEFORINGSPAAMINNELSE
+# =============================================================================
+#
+#  HVA GJOR DEN?
+#    Naar en GitHub-issue lukkes og den har en `jira:NOKKEL`-label, legges det
+#    igjen en kommentar som minner om timeforing i Tempo. Issues uten
+#    Jira-kobling roeres ikke.
+#
+#  LOGIKKEN LIGGER IKKE HER
+#    Kildekode:  https://github.com/InvoAS/InvoLibrary/blob/main/.github/workflows/jira-close-reminder.yml
+#    Full guide: https://github.com/InvoAS/InvoLibrary/blob/main/agents/shared/github-jira-integration.md
+# =============================================================================
+
+name: "Jira: Time tracking reminder"
+
+on:
+  issues:
+    types: [closed]
+
+permissions:
+  issues: write
+
+jobs:
+  remind:
+    uses: InvoAS/InvoLibrary/.github/workflows/jira-close-reminder.yml@main

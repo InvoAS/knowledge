@@ -1,0 +1,31 @@
+# =============================================================================
+#  JIRA-INTEGRASJON - HINT PAA NYE ISSUES
+# =============================================================================
+#
+#  HVA GJOR DEN?
+#    Kommenterer paa nyopprettede GitHub-issues med et tips om at labelen
+#    `create-jira` oppretter en Jira-issue for timeforing.
+#
+#  IKKE ONSKET?
+#    Denne er valgfri - slett filen hvis repoet faar mange issues og hintet
+#    blir stoy. `create-jira` fungerer uansett.
+#
+#  LOGIKKEN LIGGER IKKE HER
+#    Kildekode:  https://github.com/InvoAS/InvoLibrary/blob/main/.github/workflows/jira-new-issue-hint.yml
+#    Full guide: https://github.com/InvoAS/InvoLibrary/blob/main/agents/shared/github-jira-integration.md
+# =============================================================================
+
+name: "Jira: Hint on new issue"
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  hint:
+    uses: InvoAS/InvoLibrary/.github/workflows/jira-new-issue-hint.yml@main
+    with:
+      jira_project: INVIN
